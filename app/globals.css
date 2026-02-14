@@ -1,0 +1,201 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ───────────────────────────── */
+/* Theme Variables (Light Only)  */
+/* ───────────────────────────── */
+
+:root {
+  --radius: 0.75rem;
+
+  --background: #f8fafc;            /* slate-50 */
+  --foreground: #0f172a;            /* slate-900 */
+
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+
+  --primary: #2563eb;               /* blue-600 */
+  --primary-foreground: #ffffff;
+
+  --secondary: #e0e7ff;             /* indigo-100 */
+  --secondary-foreground: #1e3a8a;  /* blue-900 */
+
+  --muted: #f1f5f9;                 /* slate-100 */
+  --muted-foreground: #64748b;      /* slate-500 */
+
+  --accent: #e0e7ff;
+  --accent-foreground: #1e3a8a;
+
+  --destructive: #ef4444;
+
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #2563eb;
+
+  --chart-1: #2563eb;
+  --chart-2: #16a34a;
+  --chart-3: #9333ea;
+  --chart-4: #f59e0b;
+  --chart-5: #db2777;
+
+  --sidebar: #f8fafc;
+  --sidebar-foreground: #0f172a;
+  --sidebar-primary: #2563eb;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e0e7ff;
+  --sidebar-accent-foreground: #1e3a8a;
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: #2563eb;
+}
+
+/* ───────────────────────────── */
+/* Base Styles                   */
+/* ───────────────────────────── */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ───────────────────────────── */
+/* Components & Utilities        */
+/* ───────────────────────────── */
+
+@layer components {
+  .input {
+    @apply w-full px-4 py-3 rounded-xl border border-border bg-background
+           text-foreground placeholder:text-muted-foreground
+           focus:outline-none focus:ring-2 focus:ring-ring/40
+           focus:border-ring transition-all duration-200;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 rounded-xl font-semibold text-white
+           bg-gradient-to-r from-blue-500 to-indigo-600
+           hover:from-blue-600 hover:to-indigo-700
+           active:scale-[0.98]
+           shadow-md hover:shadow-lg
+           transition-all duration-200 cursor-pointer;
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 rounded-xl font-medium
+           bg-secondary text-secondary-foreground
+           hover:bg-secondary/80
+           active:scale-[0.98]
+           transition-all duration-200 cursor-pointer;
+  }
+
+  .btn-ghost {
+    @apply px-3 py-2 rounded-lg font-medium
+           text-muted-foreground hover:text-foreground
+           hover:bg-muted
+           active:scale-[0.98]
+           transition-all duration-200 cursor-pointer;
+  }
+
+  .btn-danger {
+    @apply px-4 py-2 rounded-xl font-medium
+           text-destructive hover:bg-destructive/10
+           active:scale-[0.98]
+           transition-all duration-200 cursor-pointer;
+  }
+
+  .btn-google {
+    @apply flex items-center justify-center gap-3 w-full
+           px-6 py-3 rounded-xl font-semibold
+           border-2 border-border bg-card text-card-foreground
+           hover:bg-muted hover:border-ring/30
+           active:scale-[0.98]
+           shadow-sm hover:shadow-md
+           transition-all duration-200 cursor-pointer;
+  }
+
+  .card-elevated {
+    @apply bg-card text-card-foreground rounded-2xl
+           border border-border shadow-sm
+           hover:shadow-md transition-all duration-300;
+  }
+}
+
+/* ───────────────────────────── */
+/* Scrollbar                     */
+/* ───────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--muted-foreground);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--foreground);
+}
+
+/* ───────────────────────────── */
+/* Animations                    */
+/* ───────────────────────────── */
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.5s ease-out both;
+}
+
+.animate-toast-in {
+  animation: toast-in 0.3s ease-out both;
+}
+
+.animate-stagger > * {
+  animation: fade-in-up 0.5s ease-out both;
+}
+
+.animate-stagger > *:nth-child(1) { animation-delay: 0.05s; }
+.animate-stagger > *:nth-child(2) { animation-delay: 0.1s; }
+.animate-stagger > *:nth-child(3) { animation-delay: 0.15s; }
+.animate-stagger > *:nth-child(4) { animation-delay: 0.2s; }
+.animate-stagger > *:nth-child(5) { animation-delay: 0.25s; }
+.animate-stagger > *:nth-child(6) { animation-delay: 0.3s; }
+.animate-stagger > *:nth-child(7) { animation-delay: 0.35s; }
+.animate-stagger > *:nth-child(8) { animation-delay: 0.4s; }
+.animate-stagger > *:nth-child(9) { animation-delay: 0.45s; }
